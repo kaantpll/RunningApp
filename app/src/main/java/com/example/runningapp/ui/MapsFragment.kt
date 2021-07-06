@@ -1,4 +1,4 @@
-package com.example.runningapp
+package com.example.runningapp.ui
 
 import androidx.fragment.app.Fragment
 
@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.runningapp.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -28,7 +29,7 @@ class MapsFragment : Fragment() {
 
     private fun setMapStyle(googleMap: GoogleMap) {
         try {
-            val success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(),R.raw.style))
+            val success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.style))
             
         }catch (e: Exception){
             Log.d("MAP_ERROR",e.toString())

@@ -21,16 +21,22 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignUpBinding
     private lateinit var mAuth :FirebaseAuth
     private lateinit var db : FirebaseFirestore
-    private lateinit var user : FirebaseUser
+    private  var user : FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_sign_up)
+        val view = binding.root
+        setContentView(view)
 
         mAuth = FirebaseAuth.getInstance()
-        user = mAuth.currentUser!!
+        user = mAuth.currentUser
         db = FirebaseFirestore.getInstance()
+
+        binding.goToSignIn.setOnClickListener {
+            val intent = Intent(this,SignInActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.signUpButton.setOnClickListener {
 
@@ -55,7 +61,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun registerDatabase(email: String, password: String, userName: String) {
 
-        val userId = user.uid
+        val userId = user?.uid
         val user = hashMapOf(
             "userId" to userId,
             "email" to email,
