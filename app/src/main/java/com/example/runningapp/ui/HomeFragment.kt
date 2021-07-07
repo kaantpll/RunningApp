@@ -20,9 +20,12 @@ class HomeFragment : Fragment() {
         binding= FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.recordButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_mapsFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
         }
+        
+
         return binding.root
     }
+
 
 }

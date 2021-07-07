@@ -37,7 +37,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="28dp"
         android:alpha="0.60"
-        android:text="Good Morning"
+        android:text="@string/good_morning"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,18 +47,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="2dp"
-        android:text="Kaan Topal"
+        android:text="@string/kaan_topal"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
+
     <ImageView
         android:id="@+id/notifications"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/bell"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
-        android:text="Challenges"
+        android:text="@string/challenges"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -96,12 +97,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:text="Last Result"
+        android:text="@string/last_result"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/challengesImageView" />
+
+
 
     <GridLayout
         android:id="@+id/gridLayout"
@@ -339,10 +342,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/recordButton"
-        android:layout_width="320dp"
+        android:layout_width="360dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:text="See record"
+        android:text="@string/see_record"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
