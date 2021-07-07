@@ -15,11 +15,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RunningApp">
-        <activity android:name=".activity.SilActivity"></activity>
-        <activity android:name=".activity.MapsActivity" />
+
         <activity android:name=".activity.FeedActivity" />
         <activity android:name=".activity.SignUpActivity" />
 
