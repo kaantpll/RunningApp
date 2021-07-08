@@ -1,5 +1,6 @@
 package com.example.runningapp.ui
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.runningapp.R
@@ -27,12 +29,16 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
 
     private var binding :FragmentMapsBinding? = null
 
+    val started = MutableLiveData(false)
+
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        //googleMap.isMyLocationEnabled = true
-       // googleMap.setOnMyLocationClickListener(requireContext())
+
+        googleMap.isMyLocationEnabled = true
+        googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.uiSettings.apply {
             isZoomControlsEnabled = true
 
@@ -61,11 +67,8 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
             findNavController().navigate(R.id.action_mapsFragment_to_homeFragment)
         }
 
-        binding!!.tikla.setOnClickListener {
-            lifecycleScope.launch {
-                findNavController().navigate(R.id.action_mapsFragment_to_bottomSheetFragment)
-            }
-        }
+
+
 
         return binding!!.root
     }
