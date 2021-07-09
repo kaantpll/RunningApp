@@ -32,5 +32,9 @@ object MapUtil {
         }
         return "0.00"
     }
+    fun calculateCalories(){
+        /** CALCULATE CALORIES*/
+    }
+
 
 }

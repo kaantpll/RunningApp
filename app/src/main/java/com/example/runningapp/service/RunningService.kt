@@ -15,6 +15,7 @@ import androidx.core.view.GravityCompat.apply
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
 import com.example.runningapp.util.constant.Constants.ACTION_SERVICE_START
+import com.example.runningapp.util.constant.Constants.ACTION_SERVICE_STOP
 import com.example.runningapp.util.constant.Constants.LOCATION_FASTEST_UPDATE_INTERVAL
 import com.example.runningapp.util.constant.Constants.LOCATION_UPDATE_INTERVAL
 import com.example.runningapp.util.constant.Constants.NOTIFICATION_CHANNEL_ID
@@ -69,6 +70,11 @@ class RunningService : LifecycleService()
                     startMyForegroundService()
                     startLocationUpdate()
                 }
+                ACTION_SERVICE_STOP->{
+                    started.postValue(false)
+                    stopForegroundService()
+                }
+                else -> {}
             }
         }
 
@@ -81,6 +87,7 @@ class RunningService : LifecycleService()
         createNotificationChannel()
         startForeground(NOTIFICATION_ID,notification.build())
     }
+
     private fun stopForegroundService(){
         removeLocationUpdates()
         (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancel(
