@@ -1,7 +1,7 @@
 package com.example.runningapp.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
+
 import android.content.Intent
 import android.graphics.Color
 import androidx.fragment.app.Fragment
@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.runningapp.R
@@ -28,13 +27,13 @@ import com.example.runningapp.util.extension.Extension.enable
 import com.example.runningapp.util.extension.Extension.hide
 import com.example.runningapp.util.extension.Extension.show
 import com.example.runningapp.util.map.MapUtil
+import com.example.runningapp.util.map.MapUtil.calculateCalories
 import com.example.runningapp.util.map.MapUtil.calculateElapsedTime
 import com.example.runningapp.util.map.MapUtil.calculateTheDistance
 import com.example.runningapp.util.map.MapUtil.setCameraPosition
 import com.example.runningapp.util.permission.Permissions.hasBackgroundLocationPermission
 import com.example.runningapp.util.permission.Permissions.requestBackgroundLocationPermission
 import com.google.android.gms.location.FusedLocationProviderClient
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -46,7 +45,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMyLocationButtonClickListener, EasyPermissions.PermissionCallbacks{
+class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickListener,GoogleMap.OnMyLocationButtonClickListener, EasyPermissions.PermissionCallbacks{
 
     private var binding :FragmentMapsBinding? = null
 
@@ -60,24 +59,28 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
     private var polyLineList = mutableListOf<Polyline>()
     private var locationList = mutableListOf<LatLng>()
 
+    private var distance = mutableListOf<Double>()
+
     private lateinit var map : GoogleMap
 
     @SuppressLint("MissingPermission")
-    private val callback = OnMapReadyCallback { googleMap ->
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    override fun onMapReady(googleMap: GoogleMap) {
 
-        googleMap.isMyLocationEnabled = true
-        googleMap.setOnMyLocationButtonClickListener(this)
-        googleMap.uiSettings.apply {
-            isZoomControlsEnabled = true
         map = googleMap
+        val sydney = LatLng(-34.0, 151.0)
+        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        map.isMyLocationEnabled = true
+        map.setOnMyLocationButtonClickListener(this)
+        map.uiSettings.apply {
+            isZoomControlsEnabled = true
         }
-        setMapStyle(googleMap)
+        setMapStyle(map)
 
         observeRunningService()
     }
+
 
     private fun setMapStyle(googleMap: GoogleMap) {
         try {
@@ -192,6 +195,7 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
             }
             binding!!.restartButton.hide()
             binding!!.startButton.show()
+            findNavController().navigate(R.id.action_mapsFragment_to_homeFragment)
         }
     }
 
@@ -208,7 +212,7 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+        mapFragment?.getMapAsync(this)
     }
 
     private fun observeRunningService(){
@@ -262,11 +266,12 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
     private fun drawPolyline(){
         val polyLine = map.addPolyline(
                 PolylineOptions().apply {
-                    width(12f)
-                    color(Color.BLUE)
+                    width(16f)
+                    color(Color.GREEN)
                     jointType(JointType.ROUND)
-                    startCap(ButtCap())
-                    endCap(ButtCap())
+                    startCap(RoundCap())
+                    endCap(RoundCap())
+
                     addAll(locationList)
                 }
         )
@@ -284,7 +289,8 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
     private fun displayResults(){
         val result = Result(
                 calculateTheDistance(locationList),
-                calculateElapsedTime(startTime,stopTime)
+                calculateElapsedTime(startTime,stopTime),
+                calculateCalories(calculateTheDistance(locationList))
         )
         lifecycleScope.launch {
             delay(2500)
@@ -332,6 +338,8 @@ class MapsFragment : Fragment() , GoogleMap.OnMarkerClickListener,GoogleMap.OnMy
     override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         onStartButtonClicked()
     }
+
+
 
 
 }

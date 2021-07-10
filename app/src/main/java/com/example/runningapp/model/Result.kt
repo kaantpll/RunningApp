@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Result(
         val distance : String,
         val time : String ,
-       /* val calories : String,
-        val heartBeat :String,*/
+         val calories : Double,
+        //val heartBeat :String,*/
 ) : Parcelable

@@ -63,7 +63,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
             android:backgroundTint="@color/blue"
@@ -77,7 +77,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/restartButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             observeTracking="@{tracking.started}"
             android:layout_marginBottom="60dp"
@@ -91,7 +91,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
             android:backgroundTint="@color/red"

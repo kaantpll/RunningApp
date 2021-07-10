@@ -45,6 +45,7 @@ class RunningService : LifecycleService()
         val startTime = MutableLiveData<Long>()
         val stopTime = MutableLiveData<Long>()
         val locationList = MutableLiveData<MutableList<LatLng>>()
+
     }
 
     private fun setInitialValues()

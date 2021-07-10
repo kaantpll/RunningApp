@@ -32,8 +32,11 @@ object MapUtil {
         }
         return "0.00"
     }
-    fun calculateCalories(){
-        /** CALCULATE CALORIES*/
+    fun calculateCalories(distance: String) : Double {
+        val defaultValue = 0.781
+        return defaultValue * distance.toDouble()
+
+
     }
 
 
