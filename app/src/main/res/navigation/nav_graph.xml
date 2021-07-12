@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mapsFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <argument
+            android:name="homeResult"
+            app:argType="com.example.runningapp.model.Result" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -25,6 +28,11 @@
         <action
             android:id="@+id/action_homeFragment_to_permissionFragment"
             app:destination="@id/permissionFragment" />
+        <argument
+            android:name="home"
+            app:argType="com.example.runningapp.model.Result"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/permissionFragment"
@@ -49,5 +57,8 @@
         <argument
             android:name="result"
             app:argType="com.example.runningapp.model.Result" />
+        <action
+            android:id="@+id/action_bottomSheetFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </dialog>
 </navigation>

@@ -59,8 +59,6 @@ class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var polyLineList = mutableListOf<Polyline>()
     private var locationList = mutableListOf<LatLng>()
 
-    private var distance = mutableListOf<Double>()
-
     private lateinit var map : GoogleMap
 
     @SuppressLint("MissingPermission")
@@ -100,6 +98,7 @@ class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding = FragmentMapsBinding.inflate(inflater,container,false)
 
         binding!!.backHomePageButton.setOnClickListener {
+            mapReset()
             findNavController().navigate(R.id.action_mapsFragment_to_homeFragment)
         }
 
@@ -176,6 +175,7 @@ class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
     @SuppressLint("MissingPermission")
     private fun mapReset() {
+        findNavController().navigate(R.id.action_mapsFragment_to_homeFragment)
         fusedLocationProviderClient.lastLocation.addOnCompleteListener {
             val lastKnowLocation = LatLng(
                     it.result.latitude,
@@ -195,7 +195,6 @@ class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickList
             }
             binding!!.restartButton.hide()
             binding!!.startButton.show()
-            findNavController().navigate(R.id.action_mapsFragment_to_homeFragment)
         }
     }
 
@@ -302,6 +301,7 @@ class MapsFragment : Fragment() ,OnMapReadyCallback, GoogleMap.OnMarkerClickList
             }
             binding!!.stopButton.hide()
             binding!!.restartButton.show()
+
         }
     }
 

@@ -67,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
             "email" to email,
             "password" to password,
             "userName" to userName,
-            "date" to Timestamp.CREATOR
+            "imageUrl" to null
 
         )
 

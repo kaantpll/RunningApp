@@ -15,6 +15,7 @@
         app:shapeAppearanceOverlay="@style/Circular"
         android:layout_marginTop="28dp"
         android:src="@drawable/account"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,32 +80,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/challengesImageView"
-        android:layout_width="350dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/red"
-        app:shapeAppearanceOverlay="@style/Circular3"
+
+    <com.majorik.sparklinelibrary.SparkLineLayout
+        android:id="@+id/sparkLine"
+        android:layout_width="361dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="33dp"
+        android:background="@drawable/sparkline_background"
+        app:layout_constraintCircleRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:s_line_color="@color/green"
+        app:s_line_thickness="3dp"
+
+        app:s_marker_background_color="#fed32c"
+        app:s_marker_width="3dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         android:text="@string/last_result"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challengesImageView" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/sparkLine" />
 
     <GridLayout
         android:id="@+id/gridLayout"
