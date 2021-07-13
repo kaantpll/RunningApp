@@ -48,19 +48,23 @@
         android:id="@+id/bottomSheetCaloriesValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
         android:text="784 cal"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calories"
         android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="@+id/bottomSheetCaloriesValue"
         app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -92,9 +96,11 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Heart rate"
+        android:layout_marginBottom="38dp"
 
+        android:text="Heart rate"
         android:textSize="8sp"
+        app:layout_constraintBottom_toTopOf="@+id/finish"
         app:layout_constraintEnd_toEndOf="@+id/bottomSheetHeartBate"
         app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -130,6 +136,7 @@
         android:layout_height="wrap_content"
         android:text="Distance"
         android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="@+id/bottomSheetDistance"
         app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -140,15 +147,15 @@
         android:id="@+id/finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/red"
-        android:text="Finish"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/black_grey"
+        android:text="Fınısh"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

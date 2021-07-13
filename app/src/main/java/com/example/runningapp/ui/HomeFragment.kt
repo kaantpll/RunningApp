@@ -36,13 +36,15 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 class HomeFragment : Fragment() {
 
     private lateinit var  binding : FragmentHomeBinding
     private val time = Calendar.getInstance()
     private val args : HomeFragmentArgs by navArgs()
-    private val distanceList = ArrayList<String>()
+
+    private val distanceList = mutableSetOf<String>()
 
     var selectedPictureFromGallery: Uri? = null
     var selectedBitmap: Bitmap? = null
@@ -105,13 +107,11 @@ class HomeFragment : Fragment() {
 
             editor.apply()
 
-            distanceList.add(args.home!!.distance)
         }
 
 
-
         binding!!.sparkLine.setData(arrayListOf(
-            298,2442,100,2500
+            298,2442,100,2500,500,1500
         ))
 
         Log.d("TAGHOME",distanceList.size.toString())
